@@ -1,4 +1,4 @@
-var connection = require("./config/connection.js");
+var connection = require("../config/connection.js");
 
 connection.connect(function(err) {
   if (err) {
@@ -20,11 +20,12 @@ var orm = {
   },
 
   insertOne: function(burger_name, callback) {
+
     connection.query("INSERT INTO burgers SET ?", {
 
     burger_name: burger_name,
     devoured: false,
-    date: timestamp
+    
     }, function (err, result) {
       if (err) {
         throw err;
@@ -34,7 +35,7 @@ var orm = {
   },
 
   updateOne: function(burgerId, callback) {
-    connection.query = "UPDATE burgers SET ?? WHERE id = ?", [{devoured: true}, {id: burgerId}], function (err, results) {
+    connection.query = "UPDATE burgers SET ? WHERE id = ?", [{devoured: true}, {id: burgerId}], function (err, results) {
       if (err) {
         throw err;
         callback(result);

@@ -14,19 +14,15 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/", function(req, res) {
-  burger.insertOne([
-    "burger_name", "devoured" 
-    ], [
-    req.body.burger_name, req.body.devoured
-    ], function() {
-    res.redirect("/");
+router.post("/burger/create", function(req, res) {
+  burger.insertOne(req.body.burger_name, function() {
+    res.redirect("index");
   });
 });
 
-router.put("/:id", function(req, res) {
-  burger.updateOne(req.params.id, ({devoured: req.body.devoured}), function() {
-    res.redirect("/");
+router.post("/burger/eat/:id", function(req, res) {
+  burger.updateOne(req.params.id, function() {
+    res.redirect("index");
   });
 });
 
